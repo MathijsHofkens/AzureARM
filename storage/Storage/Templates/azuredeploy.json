@@ -1,0 +1,72 @@
+﻿{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+  "parameters": {
+    "disksName": {
+      "type": "string",
+      "maxLength": 24,
+      "minLength": 3
+    },
+    "disksType": {
+      "type": "string",
+      "defaultValue": "Standard_LRS",
+      "allowedValues": [
+        "Standard_LRS",
+        "Standard_ZRS",
+        "Standard_GRS",
+        "Standard_RAGRS",
+        "Premium_LRS"
+      ]
+    },
+    "diagnosticsName": {
+      "type": "string",
+      "maxLength": 24,
+      "minLength": 3
+    },
+    "diagnosticsType": {
+      "type": "string",
+      "defaultValue": "Standard_LRS",
+      "allowedValues": [
+        "Standard_LRS",
+        "Standard_ZRS",
+        "Standard_GRS",
+        "Standard_RAGRS",
+        "Premium_LRS"
+      ]
+    }
+  },
+  "variables": {
+    "disksName": "[parameters('disksName')]",
+    "diagnosticsName": "[parameters('diagnosticsName')]"
+  },
+    "resources": [
+        {
+            "name": "[variables('disksName')]",
+            "type": "Microsoft.Storage/storageAccounts",
+            "location": "[resourceGroup().location]",
+            "apiVersion": "2015-06-15",
+            "dependsOn": [ ],
+            "tags": {
+                "displayName": "disks"
+            },
+            "properties": {
+                "accountType": "[parameters('disksType')]"
+            }
+        },
+        {
+            "name": "[variables('diagnosticsName')]",
+            "type": "Microsoft.Storage/storageAccounts",
+            "location": "[resourceGroup().location]",
+            "apiVersion": "2015-06-15",
+            "dependsOn": [ ],
+            "tags": {
+                "displayName": "diagnostics"
+            },
+            "properties": {
+                "accountType": "[parameters('diagnosticsType')]"
+            }
+        }
+    ],
+    "outputs": {
+    }
+}
