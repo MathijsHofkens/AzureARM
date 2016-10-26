@@ -1,0 +1,27 @@
+﻿{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "storagediagName": {
+            "value": "westrdiagvm"
+        },
+        "storagevhdName": {
+            "value": "westrvhdvm"
+        },
+        "vmwindowsAdminUserName": {
+            "value": "azureadmin"
+        },
+        "vmwindowsName": {
+            "value": "vm01"
+        },
+        "vmwindowsWindowsOSVersion": {
+            "value": "2016-Datacenter"
+        },
+        "nsgName": {
+            "value": "backend"
+        },
+        "vmwindowsPipDnsName": {
+            "value": "vm01tst"
+        }
+    }
+}
